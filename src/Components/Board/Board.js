@@ -22,10 +22,14 @@ const Board = ({
   });
 
   useEffect(() => {
+    let finished = false;
     if (stepCount >= 5) {
-      checkResult(lastCoordinates.rowIndex, lastCoordinates.columnIndex);
+      finished = checkResult(
+        lastCoordinates.rowIndex,
+        lastCoordinates.columnIndex
+      );
     }
-    onPlacePiece();
+    !finished && onPlacePiece();
   }, [boardState, stepCount, lastCoordinates]);
 
   const placeValue = (rowIndex, columnIndex) => {
@@ -54,8 +58,10 @@ const Board = ({
         boardState[0][2] === boardState[1][1])
     ) {
       onGameOver(1);
-    } else if (stepCount == 10) {
+      return true;
+    } else if (stepCount == 9) {
       onGameOver(0);
+      return true;
     }
   };
 

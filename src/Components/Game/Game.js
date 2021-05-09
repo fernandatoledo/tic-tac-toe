@@ -19,19 +19,23 @@ const Game = () => {
     [PLAYER.PLAYER2]: 0,
     ties: 0,
   });
+  const [titleText, setTitleText] = useState(`It's ${currentPlayer}'s turn`);
   const [finished, setFinished] = useState(false);
 
   const changePlayer = () => {
-    setCurrentPlayer(
-      currentPlayer === PLAYER.PLAYER1 ? PLAYER.PLAYER2 : PLAYER.PLAYER1
-    );
+    const nextPlayer =
+      currentPlayer === PLAYER.PLAYER1 ? PLAYER.PLAYER2 : PLAYER.PLAYER1;
+    setCurrentPlayer(nextPlayer);
+    !finished && setTitleText(`It's ${nextPlayer}'s turn`);
   };
 
   const updateScore = (result) => {
     if (result === GAME_RESULT.WIN) {
       setScore({ ...score, [currentPlayer]: score[currentPlayer] + 1 });
+      setTitleText(`Player ${currentPlayer} won the match`);
     } else {
       setScore({ ...score, ties: score.ties + 1 });
+      setTitleText("It was a tie");
     }
     setFinished(true);
   };
@@ -43,7 +47,7 @@ const Game = () => {
 
   return (
     <>
-      <text class="current-player">It's {currentPlayer}'s turn</text>
+      <text class="current-player">{titleText}</text>
       <Board
         currentPlayer={currentPlayer}
         onPlacePiece={changePlayer}
