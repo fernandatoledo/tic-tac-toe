@@ -16,7 +16,12 @@ const Game = () => {
     );
   };
 
-  return <Board currentPlayer={currentPlayer} onPlacePiece={changePlayer} />;
+  return (
+    <>
+      <text class="current-player">It's {currentPlayer}'s turn</text>
+      <Board currentPlayer={currentPlayer} onPlacePiece={changePlayer} />
+    </>
+  );
 };
 
 export default Game;
