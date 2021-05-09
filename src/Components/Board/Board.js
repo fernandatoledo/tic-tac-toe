@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Board.css";
 
-const Board = ({ currentPlayer, onPlacePiece }) => {
+const Board = ({ currentPlayer, onPlacePiece, onGameOver }) => {
   // state
   const initialBoard = [
     ["", "", ""],
@@ -47,10 +47,9 @@ const Board = ({ currentPlayer, onPlacePiece }) => {
         boardState[0][2] === boardState[2][0] &&
         boardState[0][2] === boardState[1][1])
     ) {
-      alert("You won");
-      return true;
+      onGameOver(1);
     } else if (stepCount == 10) {
-      alert("it's a tie");
+      onGameOver(0);
     }
   };
 
