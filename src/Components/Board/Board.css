@@ -12,3 +12,19 @@
   color: white;
   font-size: 80px;
 }
+
+.footer-button {
+  margin-top: 20px;
+  background-color: transparent;
+  color: white;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 600;
+  outline: none;
+  border: 2px solid white;
+}
+
+.hidden {
+  visibility: hidden;
+}

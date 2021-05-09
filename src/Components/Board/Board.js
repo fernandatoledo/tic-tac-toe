@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Board.css";
 
-const Board = ({ currentPlayer, onPlacePiece, onGameOver }) => {
+const Board = ({
+  currentPlayer,
+  onPlacePiece,
+  onGameOver,
+  finished,
+  onGameStart,
+}) => {
   // state
   const initialBoard = [
     ["", "", ""],
@@ -53,20 +59,36 @@ const Board = ({ currentPlayer, onPlacePiece, onGameOver }) => {
     }
   };
 
-  return boardState.map((row, rowIndex) => (
-    <div className="row-container">
-      {row.map((piece, columnIndex) => (
-        <button
-          className="field"
-          onClick={() =>
-            piece === "" ? placeValue(rowIndex, columnIndex) : null
-          }
-        >
-          {piece}
-        </button>
+  const restart = () => {
+    setBoardState(initialBoard);
+    setStepCount(0);
+    onGameStart();
+  };
+
+  return (
+    <>
+      {boardState.map((row, rowIndex) => (
+        <div className="row-container">
+          {row.map((piece, columnIndex) => (
+            <button
+              className="field"
+              onClick={() =>
+                piece === "" ? placeValue(rowIndex, columnIndex) : null
+              }
+            >
+              {piece}
+            </button>
+          ))}
+        </div>
       ))}
-    </div>
-  ));
+      <button
+        className={`footer-button ${!finished && "hidden"}`}
+        onClick={restart}
+      >
+        Play again
+      </button>
+    </>
+  );
 };
 
 export default Board;

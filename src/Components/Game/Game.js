@@ -19,6 +19,7 @@ const Game = () => {
     [PLAYER.PLAYER2]: 0,
     ties: 0,
   });
+  const [finished, setFinished] = useState(false);
 
   const changePlayer = () => {
     setCurrentPlayer(
@@ -32,6 +33,12 @@ const Game = () => {
     } else {
       setScore({ ...score, ties: score.ties + 1 });
     }
+    setFinished(true);
+  };
+
+  const startGame = () => {
+    setFinished(false);
+    changePlayer();
   };
 
   return (
@@ -41,6 +48,8 @@ const Game = () => {
         currentPlayer={currentPlayer}
         onPlacePiece={changePlayer}
         onGameOver={updateScore}
+        finished={finished}
+        onGameStart={startGame}
       />
 
       <div className="score-board">
