@@ -1,0 +1,11 @@
+.row-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.field {
+  height: 100px;
+  width: 100px;
+  border: 1px solid white;
+}
