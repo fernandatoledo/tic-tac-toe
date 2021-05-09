@@ -59,7 +59,9 @@ const Board = ({ currentPlayer, onPlacePiece }) => {
       {row.map((piece, columnIndex) => (
         <button
           className="field"
-          onClick={() => placeValue(rowIndex, columnIndex)}
+          onClick={() =>
+            piece === "" ? placeValue(rowIndex, columnIndex) : null
+          }
         >
           {piece}
         </button>
