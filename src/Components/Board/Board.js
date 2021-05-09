@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Board.css";
 
 const Board = () => {
@@ -8,10 +8,25 @@ const Board = () => {
     ["", "", ""],
   ];
 
-  return initialBoard.map((row) => (
+  const [boardState, setBoardState] = useState(initialBoard);
+
+  const placeValue = (rowIndex, columnIndex) => {
+    let boardStateCopy = [...boardState];
+    boardStateCopy[rowIndex][columnIndex] = "X";
+    setBoardState(boardStateCopy);
+  };
+
+  return boardState.map((row, rowIndex) => (
     <div className="row-container">
-      {row.map(() => (
-        <div className="field" />
+      {row.map((piece, columnIndex) => (
+        <div className="field">
+          <button
+            className="field"
+            onClick={() => placeValue(rowIndex, columnIndex)}
+          >
+            {piece}
+          </button>
+        </div>
       ))}
     </div>
   ));
