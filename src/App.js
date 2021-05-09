@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Board } from "./Components";
+import { Game } from "./Components";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <p>Welcome to tic tac toe</p>
       </header>
       <div className="game-container">
-        <Board />
+        <Game />
       </div>
     </div>
   );

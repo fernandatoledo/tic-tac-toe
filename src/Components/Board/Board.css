@@ -8,4 +8,7 @@
   height: 100px;
   width: 100px;
   border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 80px;
 }
